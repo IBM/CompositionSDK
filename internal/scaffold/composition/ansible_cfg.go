@@ -12,29 +12,29 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package ansible
+package composition
 
 import (
+	"github.com/operator-framework/operator-sdk/internal/scaffold/ansible"
 	"github.com/operator-framework/operator-sdk/internal/scaffold/input"
 )
 
-// RequirementsYml - A requirements file for Ansible collection dependencies
-type RequirementsYml struct {
-	StaticInput
+type AnsibleCfg struct {
+	ansible.StaticInput
 }
 
 // GetInput - gets the input
-func (r *RequirementsYml) GetInput() (input.Input, error) {
-	if r.Path == "" {
-		r.Path = "requirements.yaml"
+func (a *AnsibleCfg) GetInput() (input.Input, error) {
+	if a.Path == "" {
+		a.Path = "ansible.cfg"
 	}
-	r.TemplateBody = requirementsYmlTmpl
-	return r.Input, nil
+	a.TemplateBody = ansibleCfgTmpl
+	return a.Input, nil
 }
 
-const requirementsYmlTmpl = `---
-collections:
-  - name: community.kubernetes
-    version: "<1.0.0"
-  - operator_sdk.util
+const ansibleCfgTmpl = `[defaults]
+roles_path = /opt/ansible/roles
+library = /usr/share/ansible/openshift
+remote_tmp = /tmp/ansible
+
 `

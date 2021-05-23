@@ -40,9 +40,11 @@ var (
 
 type Plugin struct{}
 
-func (Plugin) Name() string                       { return (kbgov2.Plugin{}).Name() }
-func (Plugin) Version() string                    { return (kbgov2.Plugin{}).Version() }
-func (Plugin) SupportedProjectVersions() []string { return (kbgov2.Plugin{}).SupportedProjectVersions() }
+func (Plugin) Name() string    { return (kbgov2.Plugin{}).Name() }
+func (Plugin) Version() string { return (kbgov2.Plugin{}).Version() }
+func (Plugin) SupportedProjectVersions() []string {
+	return (kbgov2.Plugin{}).SupportedProjectVersions()
+}
 
 func (p Plugin) GetInitPlugin() plugin.Init {
 	return &initPlugin{

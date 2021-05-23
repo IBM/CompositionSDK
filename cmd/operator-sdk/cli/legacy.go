@@ -15,22 +15,7 @@
 package cli
 
 import (
-	"github.com/operator-framework/operator-sdk/cmd/operator-sdk/add"
-	"github.com/operator-framework/operator-sdk/cmd/operator-sdk/alpha"
-	"github.com/operator-framework/operator-sdk/cmd/operator-sdk/build"
-	"github.com/operator-framework/operator-sdk/cmd/operator-sdk/bundle"
-	"github.com/operator-framework/operator-sdk/cmd/operator-sdk/cleanup"
-	"github.com/operator-framework/operator-sdk/cmd/operator-sdk/completion"
-	"github.com/operator-framework/operator-sdk/cmd/operator-sdk/execentrypoint"
-	"github.com/operator-framework/operator-sdk/cmd/operator-sdk/generate"
-	"github.com/operator-framework/operator-sdk/cmd/operator-sdk/migrate"
-	"github.com/operator-framework/operator-sdk/cmd/operator-sdk/new"
-	"github.com/operator-framework/operator-sdk/cmd/operator-sdk/olm"
-	"github.com/operator-framework/operator-sdk/cmd/operator-sdk/printdeps"
-	"github.com/operator-framework/operator-sdk/cmd/operator-sdk/run"
-	"github.com/operator-framework/operator-sdk/cmd/operator-sdk/scorecard"
-	"github.com/operator-framework/operator-sdk/cmd/operator-sdk/test"
-	"github.com/operator-framework/operator-sdk/cmd/operator-sdk/version"
+	"github.com/operator-framework/operator-sdk/cmd/operator-sdk/composition"
 	"github.com/operator-framework/operator-sdk/internal/flags"
 	"github.com/operator-framework/operator-sdk/internal/util/projutil"
 
@@ -70,22 +55,23 @@ func GetCLIRoot() *cobra.Command {
 	}
 
 	root.AddCommand(
-		add.NewCmd(),
-		alpha.NewCmd(),
-		build.NewCmd(),
-		bundle.NewCmd(),
-		cleanup.NewCmd(),
-		completion.NewCmd(),
-		execentrypoint.NewCmd(),
-		generate.NewCmdLegacy(),
-		migrate.NewCmd(),
-		new.NewCmd(),
-		olm.NewCmd(),
-		printdeps.NewCmd(),
-		run.NewCmd(),
-		scorecard.NewCmd(),
-		test.NewCmd(),
-		version.NewCmd(),
+		//add.NewCmd(),
+		//alpha.NewCmd(),
+		//build.NewCmd(),
+		//bundle.NewCmd(),
+		//cleanup.NewCmd(),
+		//completion.NewCmd(),
+		//execentrypoint.NewCmd(),
+		//generate.NewCmdLegacy(),
+		//migrate.NewCmd(),
+		//new.NewCmd(),
+		composition.NewCmd(),
+		//olm.NewCmd(),
+		//printdeps.NewCmd(),
+		//run.NewCmd(),
+		//scorecard.NewCmd(),
+		//test.NewCmd(),
+		//version.NewCmd(),
 	)
 
 	// The "init" cmd is is added as a hidden subcommand from the new KB CLI to provide

@@ -12,33 +12,39 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package ansible
+package composition
 
 import (
+	"github.com/operator-framework/operator-sdk/internal/scaffold/ansible"
 	"path/filepath"
 
 	"github.com/operator-framework/operator-sdk/internal/scaffold"
 	"github.com/operator-framework/operator-sdk/internal/scaffold/input"
 )
 
-const RolesVarsMainFile = "vars" + FilePathSep + "main.yaml"
+const RolesTasksMainFile = "tasks" + ansible.FilePathSep + "main.yaml"
 
-type RolesVarsMain struct {
+type RolesTasksMain struct {
 	input.Input
 	Resource scaffold.Resource
 }
 
 // GetInput - gets the input
-func (r *RolesVarsMain) GetInput() (input.Input, error) {
+func (r *RolesTasksMain) GetInput() (input.Input, error) {
 	if r.Path == "" {
-		r.Path = filepath.Join(RolesDir, r.Resource.LowerKind, RolesVarsMainFile)
+		r.Path = filepath.Join(ansible.RolesDir, r.Resource.LowerKind, RolesTasksMainFile)
 	}
-	r.TemplateBody = rolesVarsMainAnsibleTmpl
-	r.Delims = AnsibleDelims
+	r.TemplateBody = rolesTasksMainAnsibleTmpl
+	r.Delims = ansible.AnsibleDelims
 
 	return r.Input, nil
 }
 
-const rolesVarsMainAnsibleTmpl = `---
-# vars file for [[.Resource.LowerKind]]
+const rolesTasksMainAnsibleTmpl = `---
+# tasks file for [[.Resource.LowerKind]]
+- name: translate to gnf-orchestrator network service
+  include_tasks: translate.yaml
+
+- name: update status from network service back to resource status
+  include_tasks: update_status.yaml
 `

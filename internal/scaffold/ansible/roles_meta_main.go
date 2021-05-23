@@ -21,7 +21,7 @@ import (
 	"github.com/operator-framework/operator-sdk/internal/scaffold/input"
 )
 
-const RolesMetaMainFile = "meta" + filePathSep + "main.yml"
+const RolesMetaMainFile = "meta" + FilePathSep + "main.yaml"
 
 type RolesMetaMain struct {
 	StaticInput

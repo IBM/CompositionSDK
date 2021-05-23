@@ -21,7 +21,7 @@ import (
 	"github.com/operator-framework/operator-sdk/internal/scaffold/input"
 )
 
-const RolesFilesDir = "files" + filePathSep + ".placeholder"
+const RolesFilesDir = "files" + FilePathSep + ".placeholder"
 
 type RolesFiles struct {
 	StaticInput

@@ -21,7 +21,7 @@ import (
 	"github.com/operator-framework/operator-sdk/internal/scaffold/input"
 )
 
-const RolesDefaultsMainFile = "defaults" + filePathSep + "main.yml"
+const RolesDefaultsMainFile = "defaults" + FilePathSep + "main.yaml"
 
 type RolesDefaultsMain struct {
 	input.Input

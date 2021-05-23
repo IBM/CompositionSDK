@@ -12,33 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package ansible
+package composition
 
 import (
-	"path/filepath"
-
+	"fmt"
 	"github.com/operator-framework/operator-sdk/internal/scaffold"
-	"github.com/operator-framework/operator-sdk/internal/scaffold/input"
+	"path/filepath"
 )
 
-const RolesVarsMainFile = "vars" + FilePathSep + "main.yaml"
-
-type RolesVarsMain struct {
-	input.Input
-	Resource scaffold.Resource
+func crdPathForResource(dir string, r *scaffold.Resource) string {
+	file := fmt.Sprintf("%s_%s_crd.yaml", r.FullGroup, r.Resource)
+	return filepath.Join(dir, file)
 }
-
-// GetInput - gets the input
-func (r *RolesVarsMain) GetInput() (input.Input, error) {
-	if r.Path == "" {
-		r.Path = filepath.Join(RolesDir, r.Resource.LowerKind, RolesVarsMainFile)
-	}
-	r.TemplateBody = rolesVarsMainAnsibleTmpl
-	r.Delims = AnsibleDelims
-
-	return r.Input, nil
-}
-
-const rolesVarsMainAnsibleTmpl = `---
-# vars file for [[.Resource.LowerKind]]
-`

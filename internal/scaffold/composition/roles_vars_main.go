@@ -12,16 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package ansible
+package composition
 
 import (
+	"github.com/operator-framework/operator-sdk/internal/scaffold/ansible"
 	"path/filepath"
 
 	"github.com/operator-framework/operator-sdk/internal/scaffold"
 	"github.com/operator-framework/operator-sdk/internal/scaffold/input"
 )
 
-const RolesVarsMainFile = "vars" + FilePathSep + "main.yaml"
+const RolesVarsMainFile = "vars" + ansible.FilePathSep + "main.yaml"
 
 type RolesVarsMain struct {
 	input.Input
@@ -31,14 +32,18 @@ type RolesVarsMain struct {
 // GetInput - gets the input
 func (r *RolesVarsMain) GetInput() (input.Input, error) {
 	if r.Path == "" {
-		r.Path = filepath.Join(RolesDir, r.Resource.LowerKind, RolesVarsMainFile)
+		r.Path = filepath.Join(ansible.RolesDir, r.Resource.LowerKind, RolesVarsMainFile)
 	}
 	r.TemplateBody = rolesVarsMainAnsibleTmpl
-	r.Delims = AnsibleDelims
+	r.Delims = ansible.AnsibleDelims
 
 	return r.Input, nil
 }
 
 const rolesVarsMainAnsibleTmpl = `---
 # vars file for [[.Resource.LowerKind]]
+api_version: [[.Resource.APIVersion]]
+kind: [[.Resource.Kind]]
+nsvc_api_version: gnforchestrator.ibm.com/v2alpha1
+nsvc_kind: NetworkService
 `
