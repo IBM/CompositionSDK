@@ -1,8 +1,7 @@
 # CompositionSDK
-This SDK is an extension of RedHat operator SDK and is meant to to be used for GNF-Orchestrator composition feature
+This SDK is an extension of RedHat operator SDK and is meant to to be used for GNF-Orchestrator composition feature.  
 This repo was forked from operator SDK and the composition part was added to the SDK.
 
-=======
 <img src="website/static/operator_logo_sdk_color.svg" height="125px"></img>
 
 [![Build Status](https://travis-ci.org/operator-framework/operator-sdk.svg?branch=master)](https://travis-ci.org/operator-framework/operator-sdk)
